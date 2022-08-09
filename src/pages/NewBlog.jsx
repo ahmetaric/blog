@@ -21,7 +21,7 @@ const theme = createTheme();
 
 export default function NewBlog({ info, setInfo, handleSubmit }) {
   const navigate = useNavigate();
-  console.log(info);
+ 
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -33,33 +33,13 @@ export default function NewBlog({ info, setInfo, handleSubmit }) {
       <Container
         component="main"
         maxWidth="xxl"
-        // style={{
-        //   backgroundImage: "url(https://picsum.photos/1600/900)",
-        //   backgroundRepeat: "no-repeat",
-        //   backgroundSize: "cover",
-        //   backgroundPosition: "center",
-        //   width: "100%",
-        //   height: "100vh",
-        //   paddingTop: "40px",
-        //   display: "flex",
-        //   alignItems: "center",
-        //   justifyContent: "center",
-        // }}
+        sx={{ backgroundColor: "white" }}
+        className="new-blog-container"
       >
-        <Box
-        // sx={{
-        //   backgroundColor: "white",
-        //   boxShadow: "10px 10px 5px 0px rgba(0,0,0,0.61)",
-        //   borderRadius: "10px",
-        //   maxheight: "650px",
-        //   width: "450px",
-        //   marginBottom: "10px",
-        // }}
-        >
+        <Box>
           <CssBaseline />
           <Box
             sx={{
-              marginTop: 8,
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
@@ -75,9 +55,18 @@ export default function NewBlog({ info, setInfo, handleSubmit }) {
             >
               <img src={blog} />
             </Avatar>
-            <Typography component="h1" variant="h5">
-              ── NEW BLOG ──
-            </Typography>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                m: 2,
+                color: "primary",
+              }}
+            >
+              <Typography variant="h4" component="div" gutterBottom>
+                ──── NEW BLOG ────
+              </Typography>
+            </Box>
             <Box
               component="form"
               onSubmit={handleSubmit}
@@ -106,7 +95,7 @@ export default function NewBlog({ info, setInfo, handleSubmit }) {
                 label="Image URL"
                 type="text"
                 id="imageURL"
-                autoComplete="text"
+                autoComplete="imageURL"
                 onChange={handleChange}
               />
               <TextField

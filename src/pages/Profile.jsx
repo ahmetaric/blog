@@ -16,29 +16,28 @@ export default function MediaCard() {
 
   console.log(currentUser);
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ maxWidth: 500, m: 17, height: 450 }} className="profile-card">
       <CardMedia
         component="img"
-        height="140"
+        height="300"
         image={placeholder}
-        alt="green iguana"
+        alt="profile"
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
-          {currentUser.displayName}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Not Found
-        </Typography>
-      </CardContent>
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          Email
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
           {currentUser.email}
         </Typography>
+        <Typography gutterBottom variant="h5" component="div">
+          {currentUser && (
+            <>
+              <h5 className="mb-0 text-capitalize text-center">
+                {currentUser.displayName}
+              </h5>
+            </>
+          )}
+        </Typography>
       </CardContent>
+
       <CardActions className="home-button">
         <Button size="large" onClick={() => navigate("/")}>
           HOME

@@ -1,17 +1,17 @@
 import { Box, Typography } from "@mui/material";
-import React from 'react';
-import BlogCard from "../components/BlogCard"
-import { useFetch } from '../helpers/functions';
+import React from "react";
+import BlogCard from "../components/BlogCard";
+import { useFetch } from "../helpers/functions";
 
 const Dashboard = () => {
-  const {contentList,isLoading} = useFetch();
+  const { contentList, isLoading } = useFetch();
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Box
         sx={{
           display: "flex",
           justifyContent: "center",
-          m: 2,
+          mt:13 ,
           color: "primary",
         }}
       >
@@ -29,11 +29,9 @@ const Dashboard = () => {
         )}
       </div>
 
-      {/* <Grid container spacing={2}>
-        <Grid item xs={8}></Grid>
-      </Grid> */}
+    
     </Box>
   );
-}
+};
 
-export default Dashboard
+export default Dashboard;

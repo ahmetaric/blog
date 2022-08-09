@@ -17,19 +17,19 @@ import placeholder from "../assets/placeholder.png";
 import AccountCircleRoundedIcon from "@mui/icons-material/AccountCircleRounded";
 import ModeCommentOutlinedIcon from "@mui/icons-material/ModeCommentOutlined";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { useFetch,DeleteUser } from "../helpers/functions";
+import { useFetch, DeleteCard } from "../helpers/functions";
 import { useLocation, useNavigate } from "react-router-dom";
 import DeleteIcon from "@mui/icons-material/Delete";
 import SendIcon from "@mui/icons-material/Send";
 import { AuthContext } from "../contexts/AuthContext";
 
-const Details = ({}) => {
+const Details = () => {
   const navigate = useNavigate();
   const { isLoading, contentList } = useFetch();
   const currentUser = useContext(AuthContext);
   const { state } = useLocation();
   const handleDelete = ()=>{
-    DeleteUser(state.id)
+    DeleteCard(state.id);
     navigate("/");
   }
 
@@ -64,16 +64,12 @@ const Details = ({}) => {
           <Card sx={{ width: 600, mt: 3 }} className="card-content">
             <CardHeader />
 
-            {state.img ? (
-              <CardMedia component="img" height="500" image={state.img} />
-            ) : (
-              <CardMedia
-                component="img"
-                height="194"
-                image={placeholder}
-                alt={state.title}
-              />
-            )}
+            <CardMedia
+              component="img"
+              height="194"
+              image={state.img ? state.img : placeholder}
+              alt={state.title}
+            />
 
             <CardContent>
               <Typography
@@ -124,17 +120,25 @@ const Details = ({}) => {
             spacing={2}
             sx={{ m: 4, justifyContent: "center" }}
           >
-            <Button variant="outlined">UPDATE</Button>
+            <Button variant="outlined"
+            onClick={()=>navigate("/update",{state:state})}
+            >UPDATE</Button>
             <Button
               onClick={handleDelete}
               variant="contained"
               color="error"
               endIcon={<DeleteIcon />}
             >
-              Delete
+              DELETE
             </Button>
           </Stack>
         )}
+
+        <CardActions>
+          <Button size="large" onClick={()=>navigate("/")}>
+            HOME
+          </Button>
+        </CardActions>
       </Box>
     </div>
   );

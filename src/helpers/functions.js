@@ -1,6 +1,7 @@
 import app from "./firebase";
 import { getDatabase, ref, push, set, onValue, update, remove } from "firebase/database";
 import { useEffect, useState } from "react";
+import {Navigate} from "react-router-dom";
 
 export const AddUser = (info,currentUser) => {
   const db = getDatabase(app);
@@ -36,8 +37,17 @@ export const useFetch = () => {
 };
 
 
-export const DeleteUser = (id) => {
+export const DeleteCard = (id) => {
   const db = getDatabase(app);
   remove(ref(db, "users/" + id));
   
+};
+
+export const UpdateCard = (info,navigate)=>{
+  console.log(info);
+  const db = getDatabase(app);
+  const updates = {};
+  updates["users/" + info.id] = info;
+  navigate("/");
+  return update(ref(db),updates);
 };

@@ -43,11 +43,12 @@ export const DeleteCard = (id) => {
   
 };
 
-export const UpdateCard = (info,navigate)=>{
+export const UpdateCard = (info, navigate) => {
   console.log(info);
   const db = getDatabase(app);
   const updates = {};
   updates["users/" + info.id] = info;
   navigate("/");
-  return update(ref(db),updates);
+
+  return update(ref(db), updates);
 };

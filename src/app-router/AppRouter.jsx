@@ -54,7 +54,7 @@ const AppRouter = () => {
         />
         <Route path="logout" element={<Login />} />
         <Route
-          path="updateblog"
+          path="update"
           element={
             <UpdateBlog
               info={info}

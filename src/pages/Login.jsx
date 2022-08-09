@@ -121,7 +121,7 @@ export default function SignIn({email,setEmail}) {
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                Sign In
+                LOGİN
               </Button>
               <Button
                 type="submit"

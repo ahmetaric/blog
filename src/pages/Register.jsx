@@ -14,19 +14,10 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import blog from "../assets/blok.png";
 import { useState } from "react";
-import { createUser } from "../helpers/firebase";
+import { createUser, signUpProvider } from "../helpers/firebase";
 import { useNavigate } from "react-router-dom";
+import google from "../assets/google.png";
 
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    ></Typography>
-  );
-}
 
 const theme = createTheme();
 
@@ -34,12 +25,17 @@ export default function SignIn() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     // console.log(email, password);
     const displayName = `${email}`;
     createUser(email, password, navigate, displayName);
   };
+
+  const handleProviderLogin = ()=>{
+    signUpProvider(navigate);
+  }
 
   return (
     <ThemeProvider theme={theme}>
@@ -64,15 +60,15 @@ export default function SignIn() {
             backgroundColor: "white",
             boxShadow: "10px 10px 5px 0px rgba(0,0,0,0.61)",
             borderRadius: "10px",
-            maxheight: "650px",
+            height: "%100",
             width: "450px",
-            marginBottom: "10px",
+            marginBottom: "-3rem",
           }}
         >
           <CssBaseline />
           <Box
             sx={{
-              marginTop: 8,
+              marginTop: 5,
               display: "flex",
               flexDirection: "column",
               alignItems: "center",
@@ -126,7 +122,21 @@ export default function SignIn() {
                 variant="contained"
                 sx={{ mt: 3, mb: 2 }}
               >
-                Sign In
+                REGİSTER
+              </Button>
+              <Button
+                className="btn"
+                type="submit"
+                fullWidth
+                variant="contained"
+                onClick={handleProviderLogin}
+                sx={{
+                  backgroundColor: "white",
+                  color: "black",
+                  
+                }}
+              >
+                WITH &nbsp; <img src={google} style={{ width: "75px" }} />
               </Button>
             </Box>
           </Box>

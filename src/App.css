@@ -1,0 +1,23 @@
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.blog-card,
+.details-container {
+  margin: 3rem;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.appBar,
+.card-content {
+  cursor: pointer;
+}
+
+.details-h4 {
+  text-align: center;
+}

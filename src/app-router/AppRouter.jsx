@@ -10,7 +10,7 @@ import Details from "../pages/Details";
 import { AddUser } from "../helpers/functions";
 import PrivateRouter from "./PrivateRouter";
 import { AuthContext } from "../contexts/AuthContext";
-
+import UpdateBlog from "../pages/UpdateBlog";
 
 const initialValues = { title: "", img: "", content: "" };
 
@@ -53,6 +53,16 @@ const AppRouter = () => {
           }
         />
         <Route path="logout" element={<Login />} />
+        <Route
+          path="updateblog"
+          element={
+            <UpdateBlog
+              info={info}
+              setInfo={setInfo}
+              handleSubmit={handleSubmit}
+            />
+          }
+        />
       </Routes>
     </>
   );

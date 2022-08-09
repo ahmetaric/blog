@@ -30,9 +30,6 @@ const hover = {
 };
 
 const Navbar = () => {
-  // const currentUser = { displayName: "yasin gultekin" };
-  // // const currentUser = false;
-
   const currentUser = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -56,50 +53,24 @@ const Navbar = () => {
 
   return (
     <AppBar
-      position="static"
+      className="appBar"
       sx={{
-        // mr: 2,
-        display: "flex",
-        justifyContent: "space-between",
-        width: "100%",
+        backgroundColor: "#046582",
       }}
     >
       <Container maxWidth="xl">
-        <Toolbar
-          disableGutters
-          sx={{
-            mr: 2,
-            // display: "flex",
-            // justifyContent: "space-between",
-          }}
-        >
-          <Box sx={{ width: "50px", height: "75px" }} component="a" href="/">
+        <Toolbar disableGutters className="toolbar">
+          <Box
+            sx={{ width: "50px", height: "75px" }}
+            component="a"
+            onClick={() => navigate("/")}
+          >
             <img
               src={clarusway}
-              alt="a"
+              alt="clarusway"
               style={{ width: "50px", height: "50px", marginTop: "1rem" }}
             />
           </Box>
-
-          {/* <Typography
-            variant="h5"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              // mr: 2,
-              // display: { xs: "none", md: "flex" },
-              // justifyContent: "center",
-              // textAlign: "center",
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            {` <gultekin/> Blog`}
-          </Typography> */}
 
           <Box sx={{ flexGrow: 1, display: "flex" }}>
             <IconButton
@@ -120,8 +91,8 @@ const Navbar = () => {
             sx={{
               mr: 2,
               display: "flex",
-              alignItems:"center",
-              // flexGrow: { xs: "none" },
+              alignItems: "center",
+              flexGrow: { xs: "none" },
               fontFamily: "monospace",
               fontWeight: 700,
               letterSpacing: ".3rem",
@@ -131,7 +102,7 @@ const Navbar = () => {
           >
             {`--- <ahmet/> Blog ---`}
           </Typography>
-          {/* <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}></Box> */}
+
           <div className="d-flex text white align-items-center">
             {currentUser ? (
               <>
@@ -140,7 +111,9 @@ const Navbar = () => {
                 </h5>
                 <Box sx={{ flexGrow: 0 }}>
                   <IconButton onClick={handleOpenUserMenu} sx={{ pr: 0 }}>
-                    <AccountCircleIcon />
+                    <AccountCircleIcon
+                      sx={{ fontSize: "2rem", color: "white" }}
+                    />
                   </IconButton>
                   <Menu
                     sx={{ mt: "45px" }}
@@ -185,11 +158,7 @@ const Navbar = () => {
                         </Typography>
                       </NavLink>
                     </Box>
-                    {/* {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))} */}
+
                   </Menu>
                 </Box>
               </>
@@ -231,11 +200,6 @@ const Navbar = () => {
                         <Typography textAlign="center">Register</Typography>
                       </NavLink>
                     </Box>
-                    {/* {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))} */}
                   </Menu>
                 </Box>
               </>

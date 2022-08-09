@@ -42,7 +42,7 @@ export default function RecipeReviewCard({ title, img, content, email, id }) {
   const info = [
     { title: title, img: img, content: content, id: id, email: email },
   ];
-  console.log(info);
+  // console.log(info);
   const [expanded, setExpanded] = useState(false);
 
   const [readMore, setReadMore] = useState(false);

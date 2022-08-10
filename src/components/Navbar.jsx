@@ -11,14 +11,14 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-// import AdbIcon from "@mui/icons-material/Adb";
+import AdbIcon from "@mui/icons-material/Adb";
 import clarusway from "../assets/cw.jpeg";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-// import Login from "../pages/Login";
+import Login from "../pages/Login";
 import { NavLink, useNavigate } from "react-router-dom";
-import { logOut } from "../helpers/firebase";
+import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
-import {useContext} from "react";
+import { logOut } from "../helpers/firebase";
 
 const pages = ["Products", "Pricing", "Blog"];
 const settings = ["Login", "Register"];
@@ -32,6 +32,9 @@ const hover = {
 const Navbar = () => {
   const currentUser = useContext(AuthContext);
   const navigate = useNavigate();
+
+  // const currentUser = { displayName: "yasin gultekin" };
+  // const currentUser = false;
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -51,11 +54,15 @@ const Navbar = () => {
     setAnchorElUser(null);
   };
 
+  const handleLogOut = () => {
+    logOut(navigate);
+  };
+
   return (
     <AppBar
       className="appBar"
       sx={{
-        backgroundColor: "#046582",
+        backgroundColor: "warning",
       }}
     >
       <Container maxWidth="xl">
@@ -72,144 +79,96 @@ const Navbar = () => {
             />
           </Box>
 
-          <Box sx={{ flexGrow: 1, display: "flex" }}>
-            <IconButton
-              // size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleOpenNavMenu}
-              color="inherit"
-            ></IconButton>
-          </Box>
-
           <Typography
             variant="h5"
-            noWrap
-            component="a"
+            noWraps
+            // component="a"
             onClick={() => navigate("/")}
             sx={{
-              mr: 2,
-              display: "flex",
-              alignItems: "center",
-              flexGrow: { xs: "none" },
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
+              fontFamily: "Girassol",
               color: "inherit",
               textDecoration: "none",
+              fontSize: "3rem",
             }}
           >
             {`--- <ahmet/> Blog ---`}
           </Typography>
-
-          <div className="d-flex text white align-items-center">
-            {currentUser ? (
-              <>
-                <h5 className="mb-0 text-capitalize">
-                  {currentUser.displayName}
-                </h5>
-                <Box sx={{ flexGrow: 0 }}>
-                  <IconButton onClick={handleOpenUserMenu} sx={{ pr: 0 }}>
-                    <AccountCircleIcon
-                      sx={{ fontSize: "2rem", color: "white" }}
-                    />
-                  </IconButton>
-                  <Menu
-                    sx={{ mt: "45px" }}
-                    id="menu-appbar"
-                    anchorEl={anchorElUser}
-                    anchorOrigin={{
-                      vertical: "top",
-                      horizontal: "center",
-                    }}
-                    keepMounted
-                    transformOrigin={{
-                      vertical: "top",
-                      horizontal: "center",
-                    }}
-                    open={Boolean(anchorElUser)}
-                    onClose={handleCloseUserMenu}
-                  >
-                    <Box
-                      sx={{
-                        display: "flex",
-                        flexDirection: "column",
-                        width: "5rem",
-                      }}
+          <Box sx={{ flexGrow: 0 }}>
+            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+              <AccountCircleIcon fontSize="large" sx={{ color: "white" }} />
+            </IconButton>
+            <Menu
+              sx={{ mt: "45px" }}
+              id="menu-appbar"
+              anchorEl={anchorElUser}
+              anchorOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
+              }}
+              open={Boolean(anchorElUser)}
+              onClose={handleCloseUserMenu}
+            >
+              {currentUser ? (
+                <>
+                  <div>
+                    <MenuItem>
+                      <Typography
+                        onClick={() => navigate("about")}
+                        textAlign="center"
+                      >
+                        About
+                      </Typography>
+                    </MenuItem>
+                    <MenuItem>
+                      <Typography
+                        onClick={() => navigate("newblog")}
+                        textAlign="center"
+                      >
+                        New Blog
+                      </Typography>
+                    </MenuItem>
+                    <MenuItem>
+                      <Typography
+                        onClick={() => navigate("profile")}
+                        textAlign="center"
+                      >
+                        Profile
+                      </Typography>
+                    </MenuItem>
+                    <MenuItem>
+                      <Typography onClick={handleLogOut} textAlign="center">
+                        Logout
+                      </Typography>
+                    </MenuItem>
+                  </div>
+                </>
+              ) : (
+                <div>
+                  <MenuItem>
+                    <Typography
+                      onClick={() => navigate("/login")}
+                      textAlign="center"
                     >
-                      <NavLink to="profile" style={{ textDecoration: "none" }}>
-                        <Typography textAlign="center" m=".5rem">
-                          Profile
-                        </Typography>
-                      </NavLink>
-                      <NavLink to="newblog" style={{ textDecoration: "none" }}>
-                        <Typography textAlign="center" mb=".5rem">
-                          New
-                        </Typography>
-                      </NavLink>
-
-                      <NavLink to="about" style={{ textDecoration: "none" }}>
-                        <Typography textAlign="center" mb=".5rem">
-                          About
-                        </Typography>
-                      </NavLink>
-                      <NavLink to="login" style={{ textDecoration: "none" }}>
-                        <Typography
-                          textAlign="center"
-                          mb=".5rem"
-                          onClick={() => logOut()}
-                        >
-                          Logout
-                        </Typography>
-                      </NavLink>
-                    </Box>
-                  </Menu>
-                </Box>
-              </>
-            ) : (
-              <>
-                <Box sx={{ flexGrow: 0 }}>
-                  <IconButton onClick={handleOpenUserMenu} sx={{ pr: 0 }}>
-                    <AccountCircleIcon />
-                  </IconButton>
-                  <Menu
-                    sx={{ mt: "45px" }}
-                    id="menu-appbar"
-                    anchorEl={anchorElUser}
-                    anchorOrigin={{
-                      vertical: "top",
-                      horizontal: "center",
-                    }}
-                    keepMounted
-                    transformOrigin={{
-                      vertical: "top",
-                      horizontal: "center",
-                    }}
-                    open={Boolean(anchorElUser)}
-                    onClose={handleCloseUserMenu}
-                  >
-                    <Box
-                      sx={{
-                        display: "flex",
-                        flexDirection: "column",
-                        width: "5rem",
-                      }}
+                      Login
+                    </Typography>
+                  </MenuItem>
+                  <MenuItem>
+                    <Typography
+                      onClick={() => navigate("/register")}
+                      textAlign="center"
                     >
-                      <NavLink to="login" style={{ textDecoration: "none" }}>
-                        <Typography textAlign="center" m=".5rem">
-                          Login
-                        </Typography>
-                      </NavLink>
-                      <NavLink to="register" style={{ textDecoration: "none" }}>
-                        <Typography textAlign="center">Register</Typography>
-                      </NavLink>
-                    </Box>
-                  </Menu>
-                </Box>
-              </>
-            )}
-          </div>
+                      Register
+                    </Typography>
+                  </MenuItem>
+                </div>
+              )}
+            </Menu>
+          </Box>
         </Toolbar>
       </Container>
     </AppBar>

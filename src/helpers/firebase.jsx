@@ -37,7 +37,8 @@ export const createUser = async (email, password, navigate,displayName) => {
     let userCredential = await createUserWithEmailAndPassword(
       auth,
       email,
-      password
+      password,
+      displayName
     );
     console.log(userCredential);
     toastSuccessNotify("Registered successfully!");
@@ -47,12 +48,13 @@ export const createUser = async (email, password, navigate,displayName) => {
   }
 };
 
-export const signIn = async (email, password, navigate) => {
+export const signIn = async (email, password, navigate,displayName) => {
   try {
     let userCredential = await signInWithEmailAndPassword(
       auth,
       email,
-      password
+      password,
+      displayName
     );
     console.log(userCredential);
     toastSuccessNotify("Logged in successfully!");
@@ -72,8 +74,9 @@ export const userObserver = (setCurrentUser) => {
   });
 };
 
-export const logOut = () => {
+export const logOut = (navigate) => {
   signOut(auth);
+  navigate("/login");
   toastSuccessNotify("Logged out successfully!");
 };
 

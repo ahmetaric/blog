@@ -21,11 +21,15 @@ const theme = createTheme();
 
 export default function NewBlog({ info, setInfo, handleSubmit }) {
   const navigate = useNavigate();
- 
+  const date ="date";
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setInfo({ ...info, [name]: value });
+    setInfo({
+      ...info,
+      [name]: value,
+      [date]: new Date().toLocaleString("tr-TR"),
+    });
   };
 
   return (

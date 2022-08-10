@@ -16,7 +16,10 @@ export default function MediaCard() {
 
   console.log(currentUser);
   return (
-    <Card sx={{ maxWidth: 500, m: 17, height: 450 }} className="profile-card">
+    <Card
+      sx={{ maxWidth: 500, m: 17, height: 450, textAlign: "center" }}
+      className="profile-card"
+    >
       <CardMedia
         component="img"
         height="300"
@@ -38,8 +41,9 @@ export default function MediaCard() {
         </Typography>
       </CardContent>
 
+
       <CardActions className="home-button">
-        <Button size="large" onClick={() => navigate("/")}>
+        <Button variant="contained" size="large" onClick={() => navigate("/")}>
           HOME
         </Button>
       </CardActions>

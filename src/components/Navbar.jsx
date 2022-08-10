@@ -148,6 +148,12 @@ const Navbar = () => {
                           New
                         </Typography>
                       </NavLink>
+
+                      <NavLink to="about" style={{ textDecoration: "none" }}>
+                        <Typography textAlign="center" mb=".5rem">
+                          About
+                        </Typography>
+                      </NavLink>
                       <NavLink to="login" style={{ textDecoration: "none" }}>
                         <Typography
                           textAlign="center"
@@ -158,7 +164,6 @@ const Navbar = () => {
                         </Typography>
                       </NavLink>
                     </Box>
-
                   </Menu>
                 </Box>
               </>

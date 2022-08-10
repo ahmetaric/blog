@@ -7,12 +7,18 @@ import NewBlog from "../pages/NewBlog";
 import Profile from "../pages/Profile";
 import Register from "../pages/Register";
 import Details from "../pages/Details";
+import About from "../pages/About";
 import { AddUser } from "../helpers/functions";
 import PrivateRouter from "./PrivateRouter";
 import { AuthContext } from "../contexts/AuthContext";
 import UpdateBlog from "../pages/UpdateBlog";
 
-const initialValues = { title: "", img: "", content: "" };
+const initialValues = {
+  title: "",
+  img: "",
+  content: "",
+  date:"",
+};
 
 const AppRouter = () => {
   const  currentUser  = useContext(AuthContext);
@@ -36,8 +42,18 @@ const AppRouter = () => {
           element={<Login email={email} setEmail={setEmail} />}
         />
         <Route path="/" element={<Dashboard />} />
+        <Route path="about" element={<About/>} />
         <Route path="details/:id" element={<PrivateRouter />}>
-          <Route path="" element={<Details info={info} setInfo={setInfo} handleSubmit={handleSubmit} />} />
+          <Route
+            path=""
+            element={
+              <Details
+                info={info}
+                setInfo={setInfo}
+                handleSubmit={handleSubmit}
+              />
+            }
+          />
         </Route>
 
         <Route path="register" element={<Register />} />

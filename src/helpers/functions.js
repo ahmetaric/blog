@@ -3,6 +3,12 @@ import { getDatabase, ref, push, set, onValue, update, remove } from "firebase/d
 import { useEffect, useState } from "react";
 import {Navigate} from "react-router-dom";
 
+import {
+  toastErrorNotify,
+  toastSuccessNotify,
+  toastWarnNotify,
+} from "../helpers/toastNotify";
+
 export const AddUser = (info,currentUser) => {
   const db = getDatabase(app);
   const userRef = ref(db, "users/");
@@ -12,7 +18,9 @@ export const AddUser = (info,currentUser) => {
     img: info.img,
     content: info.content,
     email: currentUser,
+    date:info.date,
   });
+  toastSuccessNotify("New blog creation successful");
 };
 
 export const useFetch = () => {
@@ -40,7 +48,7 @@ export const useFetch = () => {
 export const DeleteCard = (id) => {
   const db = getDatabase(app);
   remove(ref(db, "users/" + id));
-  
+  toastSuccessNotify("Blog successfully deleted");
 };
 
 export const UpdateCard = (info, navigate) => {
@@ -49,6 +57,8 @@ export const UpdateCard = (info, navigate) => {
   const updates = {};
   updates["users/" + info.id] = info;
   navigate("/");
-
+  toastSuccessNotify("Blog updated");
   return update(ref(db), updates);
 };
+
+

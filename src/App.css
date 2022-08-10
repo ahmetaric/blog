@@ -4,13 +4,19 @@
 }
 
 .blog-card,
-.details-container {
-  margin: 3rem;
+.details-container,
+.new-blog-container
+ {
+  margin: 5rem;
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
   align-items: center;
   gap: 1rem;
+}
+
+.profile-card {
+  flex-direction: column;
 }
 
 .appBar,
@@ -20,4 +26,11 @@
 
 .details-h4 {
   text-align: center;
+}
+
+.home-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
 }

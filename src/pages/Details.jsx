@@ -97,7 +97,7 @@ const Details = () => {
                   color: "black",
                 }}
               >
-                <AccountCircleRoundedIcon /> {state.email}
+                <AccountCircleRoundedIcon /> {state.email} {state.date}
               </Typography>
             </CardContent>
 
@@ -120,9 +120,12 @@ const Details = () => {
             spacing={2}
             sx={{ m: 4, justifyContent: "center" }}
           >
-            <Button variant="outlined"
-            onClick={()=>navigate("/update",{state:state})}
-            >UPDATE</Button>
+            <Button
+              variant="outlined"
+              onClick={() => navigate("/update", { state: state })}
+            >
+              UPDATE
+            </Button>
             <Button
               onClick={handleDelete}
               variant="contained"
@@ -134,8 +137,12 @@ const Details = () => {
           </Stack>
         )}
 
-        <CardActions>
-          <Button size="large" onClick={()=>navigate("/")}>
+        <CardActions className="home-button">
+          <Button
+            variant="contained"
+            size="large"
+            onClick={() => navigate("/")}
+          >
             HOME
           </Button>
         </CardActions>

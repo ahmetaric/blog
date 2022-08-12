@@ -33,8 +33,7 @@ const Navbar = () => {
   const currentUser = useContext(AuthContext);
   const navigate = useNavigate();
 
-  // const currentUser = { displayName: "yasin gultekin" };
-  // const currentUser = false;
+
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);

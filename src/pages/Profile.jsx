@@ -9,6 +9,7 @@ import placeholder from "../assets/placeholder.png";
 import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
+import HomeIcon from "@mui/icons-material/Home";
 
 export default function MediaCard() {
   const  currentUser  = useContext(AuthContext);
@@ -17,7 +18,14 @@ export default function MediaCard() {
   console.log(currentUser);
   return (
     <Card
-      sx={{ maxWidth: 500, m: 17, height: 450, textAlign: "center" }}
+      sx={{
+        maxWidth: 500,
+        m: "auto",
+        height: "90vh",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}
       className="profile-card"
     >
       <CardMedia
@@ -25,6 +33,7 @@ export default function MediaCard() {
         height="300"
         image={placeholder}
         alt="profile"
+        sx={{ mt: 23 }}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
@@ -41,9 +50,13 @@ export default function MediaCard() {
         </Typography>
       </CardContent>
 
-
       <CardActions className="home-button">
-        <Button variant="contained" size="large" onClick={() => navigate("/")}>
+        <Button
+          variant="contained"
+          size="large"
+          endIcon={<HomeIcon />}
+          onClick={() => navigate("/")}
+        >
           HOME
         </Button>
       </CardActions>

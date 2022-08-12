@@ -55,6 +55,7 @@ export default function NewBlog({ info, setInfo, handleSubmit }) {
                 bgcolor: "primary.dark",
                 height: "250px",
                 width: "250px",
+                mt: 11,
               }}
             >
               <img src={blog} />

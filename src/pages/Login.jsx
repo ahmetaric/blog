@@ -14,7 +14,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import blog from "../assets/blok.png";
-import {signIn, signUpProvider} from "../helpers/firebase";
+import {forgotPassword, signIn, signUpProvider} from "../helpers/firebase";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import google from "../assets/google.png";
@@ -132,6 +132,13 @@ export default function SignIn({email,setEmail}) {
               >
                 WITH &nbsp; <img src={google} style={{ width: "75px" }} />
               </Button>
+              <Link
+                href="#"
+                variant="body2"
+                onClick={() => forgotPassword(email)}
+              >
+                Forgot password?
+              </Link>
             </Box>
           </Box>
         </Box>

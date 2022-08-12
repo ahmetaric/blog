@@ -4,6 +4,7 @@ import {
   getAuth,
   GoogleAuthProvider,
   onAuthStateChanged,
+  sendPasswordResetEmail,
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
@@ -92,14 +93,19 @@ export const signUpProvider = (navigate) => {
     });
 };
 
-// export const getInfo = () => {
-//   const user = auth.currentUser;
-//   if (user !== null) {
-//     const displayName = user.displayName;
-//     const email = user.email;
-//     const photoURL = user.photoURL;
-//     const emailVerified = user.emailVerified;
-//     const uid = user.uid;
-//     return { email, uid };
-//   }
-// };
+export const forgotPassword = (email) => {
+  //? Email yoluyla şifre sıfırlama için kullanılan firebase metodu
+  sendPasswordResetEmail(auth, email)
+    .then(() => {
+      // Password reset email sent!
+      toastWarnNotify("Please check your mail box!");
+      // alert("Please check your mail box!");
+    })
+    .catch((error) => {
+      if (error.code === "auth/missing-email") {
+        toastWarnNotify("Please enter your mail adress!");
+      } else {
+        toastErrorNotify(error.message);
+      }
+    });
+};
